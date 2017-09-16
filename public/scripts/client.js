@@ -11,23 +11,22 @@ function getTasks(){
     $.ajax({
         method: 'GET',
         url: '/tasks',
-        success: function(res){
+        success: function(data){
             $('#allTasks').empty();
-            appendRows(res)
+            appendRows(data);
             }
-        }
     })
 }
 
-function appendRows(){
+function appendRows(res){
     for(var i = 0; i < res.length; i++){
         var $row = $('<tr></tr>');
-            $row.append('<td>' + res.task + '</td>');
+            $row.append('<td>' + res[i].task + '</td>');
 
-            var $deleteButton =$('<td><button class="deleteMe" data-id="' + res.id + '">Delete</button></td>');
+            var $deleteButton =$('<td><button class="deleteMe" data-id="' + res[i].id + '">Delete</button></td>');
             $row.append($deleteButton);
 
-            var $completeButton =$('<td><button class="completeMe" data-id="' + res.id + '">Complete</button></td>');
+            var $completeButton =$('<td><button class="completeMe" data-id="' + res[i].id + '">Complete</button></td>');
             $row.append($completeButton);
             $('#allTasks').append($row);
     }
@@ -57,7 +56,7 @@ function deleteTask(){
         method: 'DELETE',
         url: '/tasks/' + thisId,
         success: function(){
-            getPet()
+            getTasks()
         }
     })
 }
@@ -69,7 +68,7 @@ function deleteTask(){
 //         method: 'PUT',
 //         url: '/tasks/' + thisId,
 //         success: function(){
-//             getPet()
+//             getTasks()
 //         }
 //     })
 //     }

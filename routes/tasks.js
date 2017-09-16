@@ -4,11 +4,13 @@ var pool = require('../modules/pool');
 router.get('/', function (req, res) {
     pool.connect(function (conErr, client, done){
         if (conErr){
+            console.log('line 7', conErr);
             res.sendStatus(500);
         } else {
             client.query('SELECT * FROM tasklist;', function (queryErr, resultObj){
                 done();
                 if (queryErr){
+                    console.log('line 13', queryErr);
                     res.sendStatus(500);
                 } else {
                     res.send(resultObj.rows);
