@@ -58,4 +58,24 @@ router.delete('/:id', function(req,res){
         }
     }
 )}); 
+
+router.put('/:id', function(req,res){
+    var dbId= req.params.id;
+    
+    pool.connect(function (conErr, client, done){
+        if (conErr){
+            res.sendStatus(500);
+        } else {
+            client.query('UPDATE tasklist SET taskcompleted=true WHERE id = $1;', [dbId], function(queryErr, result){
+                done();
+                if(queryErr){
+                    res.sendStatus(500);
+                } else {
+                    res.sendStatus(202);
+                }
+            }) ;
+        }
+    }
+)});
+
 module.exports = router;

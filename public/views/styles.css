@@ -29,11 +29,6 @@ th {
     color: black;
 }
 
-
-tr:nth-child(even) {
-    background-color: lightblue
-}
-
 button {
     background-color: navy;
     border: none;

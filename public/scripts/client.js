@@ -4,7 +4,7 @@ function onReady(){
     getTasks();
     $('#addButton').on('click', addTask);
     $('#allTasks').on('click', ".deleteMe", deleteTask)
-    // $('#allTasks').on('click', ".completeMe", completeTask)
+    $('#allTasks').on('click', ".completeMe", completeTask)
 }
 
 function getTasks(){
@@ -61,14 +61,16 @@ function deleteTask(){
     })
 }
 
-// function completeTask(){
-//     var thisId = $(this).data('id');
+function completeTask(){
+    var thisId = $(this).data('id');
 
-//     $.ajax({
-//         method: 'PUT',
-//         url: '/tasks/' + thisId,
-//         success: function(){
-//             getTasks()
-//         }
-//     })
-//     }
+    $.ajax({
+        method: 'PUT',
+        url: '/tasks/' + thisId,
+        success: function(){
+            //need to add a way to switch the class of 
+            //THIS SPECIFIC ROW to change the CSS logic
+            getTasks();
+        }
+    })
+}
