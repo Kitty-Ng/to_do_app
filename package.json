@@ -1,0 +1,26 @@
+{
+  "name": "to_do_app",
+  "version": "1.0.0",
+  "description": "Full stack application to add new tasks, delete tasks, and mark as completed.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kitty-Ng/to_do_app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kitty-Ng/to_do_app/issues"
+  },
+  "homepage": "https://github.com/Kitty-Ng/to_do_app#readme",
+  "dependencies": {
+    "body-parser": "^1.18.1",
+    "express": "^4.15.4",
+    "path": "^0.12.7"
+  }
+}
