@@ -24,15 +24,16 @@ function appendRows(res){
         if (res[i].taskcompleted === true){
             var $row = $('<tr data-taskcompleted="' + res[i].taskcompleted + '"></tr>');
             $row.append('<td>' + res[i].task + '</td>');
+            $row.append('<td class="glyphicon glyphicon-ok"></td>');
             $('#completedTasks').append($row);
         } else if (res[i].taskcompleted === false){
             var $row = $('<tr data-taskcompleted="' + res[i].taskcompleted + '"></tr>');
             $row.append('<td>' + res[i].task + '</td>');
 
-            var $completeButton =$('<td><button class="completeMe" data-id="' + res[i].id + '">Complete</button></td>');
+            var $completeButton =$('<td><input type ="checkbox" class="completeMe" data-id="' + res[i].id + '"></input></td>');
             $row.append($completeButton);
 
-            var $deleteButton =$('<td><button class="deleteMe" data-id="' + res[i].id + '">Delete</button></td>');
+            var $deleteButton =$('<td><input type="checkbox" class="deleteMe" data-id="' + res[i].id + '"></input></td>');
             $row.append($deleteButton);
 
             $('#allTasks').append($row);
@@ -44,6 +45,9 @@ function appendRows(res){
 
 
 function addTask(){
+    if ($('#taskIn').val() === "") {
+        alert("Please enter your new task!");
+      } else {
     var newTask ={
         task: $('#taskIn').val(),
     }
@@ -58,23 +62,25 @@ function addTask(){
             getTasks();
         }
     })
-}
+}}
 
 function deleteTask(){
     var thisId = $(this).data('id');
 
+    if (confirm('Are you sure you want to remove this task?')){
     $.ajax({
         method: 'DELETE',
         url: '/tasks/' + thisId,
         success: function(){
             getTasks()
         }
-    })
+    })}
 }
 
 function completeTask(){
     var thisId = $(this).data('id');
     var thisTaskCompleted = $(this).data('taskcompleted');
+
     var updateTask ={
         id: thisId,
         taskcompleted: thisTaskCompleted
@@ -88,7 +94,6 @@ function completeTask(){
             getTasks();
             }
             
-        }
-    )
+    })
 }
 
