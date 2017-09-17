@@ -3,8 +3,8 @@ $(document).ready(onReady);
 function onReady(){
     getTasks();
     $('#addButton').on('click', addTask);
-    $('#allTasks').on('click', ".deleteMe", deleteTask);
-    $('#allTasks').on('click', ".completeMe", completeTask);
+    $('body').on('click', ".deleteMe", deleteTask);
+    $('body').on('click', ".completeMe", completeTask);
 }
 
 function getTasks(){
@@ -26,6 +26,12 @@ function appendRows(res){
             $row.append('<td>' + res[i].task + '</td>');
             $row.append('<td class="glyphicon glyphicon-ok"></td>');
             
+            var $deleteButton =$('<td><input type="checkbox" class="deleteMe" data-id="' + res[i].id + '"></input></td>');
+            $row.append($deleteButton);
+
+            var completed_date = (res[i].completed_at).slice(0,10);
+            $row.append('<td>' + completed_date + '</td>');
+            
             $('#completedTasks').append($row);
         } else if (res[i].taskcompleted === false){
             var $row = $('<tr data-taskcompleted="' + res[i].taskcompleted + '"></tr>');
@@ -36,8 +42,9 @@ function appendRows(res){
 
             var $deleteButton =$('<td><input type="checkbox" class="deleteMe" data-id="' + res[i].id + '"></input></td>');
             $row.append($deleteButton);
-
-            $row.append('<td>' + res[i].created_at + '</td>');
+            
+            var created_date = (res[i].created_at).slice(0,10);
+            $row.append('<td>' + created_date + '</td>');
 
             $('#allTasks').append($row);
         }
@@ -68,7 +75,7 @@ function addTask(){
 function deleteTask(){
     var thisId = $(this).data('id');
 
-    if (confirm('Are you sure you want to remove this task?')){
+    if (confirm('Are you sure you want to remove this task? \nThis will remove it permanently from our database.')){
     $.ajax({
         method: 'DELETE',
         url: '/tasks/' + thisId,

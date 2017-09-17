@@ -62,16 +62,18 @@ router.put('/:id', function(req,res){
 
     pool.connect(function (conErr, client, done){
         if (conErr){
+            console.log('line 65', conErr);
             res.sendStatus(500);
         } else {
-            client.query('UPDATE tasklist SET taskcompleted=true WHERE id = $1;', [dbId], function(queryErr, result){
+            client.query('UPDATE tasklist SET taskcompleted= true, completed_at= CURRENT_TIMESTAMP WHERE id = $1;', [dbId], function(queryErr, result){
                 done();
                 if(queryErr){
+                    console.log('line 71', queryErr);
                     res.sendStatus(500);
                 } else {
                     res.sendStatus(202);
                 }
-            }) ;
+            });
         }
     })
 })
