@@ -5,6 +5,7 @@ function onReady(){
     $('#addButton').on('click', addTask);
     $('body').on('click', ".deleteMe", deleteTask);
     $('body').on('click', ".completeMe", completeTask);
+
 }
 
 function getTasks(){
@@ -21,26 +22,26 @@ function getTasks(){
 
 function appendRows(res){
     for(var i = 0; i < res.length; i++){
-        if (res[i].taskcompleted === true){
-            var $row = $('<tr data-taskcompleted="' + res[i].taskcompleted + '"></tr>');
-            $row.append('<td>' + res[i].task + '</td>');
+        var $task = res[i].task;
+        var $id = res[i].id;
+        var $taskcompleted = res[i].taskcompleted
+        var $row = $('<tr data-taskcompleted="' + $taskcompleted + '"></tr>');
+        var $deleteButton = $('<td><input type="checkbox" class="deleteMe" data-id="' + $id + '"></input></td>');
+
+        if ($taskcompleted === true){
+            $row.append('<td>' + $task + '</td>');
             $row.append('<td class="glyphicon glyphicon-ok"></td>');
-            
-            var $deleteButton =$('<td><input type="checkbox" class="deleteMe" data-id="' + res[i].id + '"></input></td>');
             $row.append($deleteButton);
 
             var completed_date = (res[i].completed_at).slice(0,10);
             $row.append('<td>' + completed_date + '</td>');
             
             $('#completedTasks').append($row);
-        } else if (res[i].taskcompleted === false){
-            var $row = $('<tr data-taskcompleted="' + res[i].taskcompleted + '"></tr>');
-            $row.append('<td>' + res[i].task + '</td>');
+        } else if ($taskcompleted === false){
+            $row.append('<td>' + $task + '</td>');
 
-            var $completeButton =$('<td><input type ="checkbox" class="completeMe" data-id="' + res[i].id + '"></input></td>');
+            var $completeButton =$('<td><input type ="checkbox" class="completeMe" data-id="' + $id + '"></input></td>');
             $row.append($completeButton);
-
-            var $deleteButton =$('<td><input type="checkbox" class="deleteMe" data-id="' + res[i].id + '"></input></td>');
             $row.append($deleteButton);
             
             var created_date = (res[i].created_at).slice(0,10);
@@ -104,4 +105,3 @@ function completeTask(){
             
     })
 }
-
