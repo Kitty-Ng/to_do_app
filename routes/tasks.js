@@ -59,7 +59,7 @@ router.delete('/:id', function(req,res){
 
 router.put('/:id', function(req,res){
     var dbId= req.params.id;
-    
+
     pool.connect(function (conErr, client, done){
         if (conErr){
             res.sendStatus(500);
@@ -73,7 +73,7 @@ router.put('/:id', function(req,res){
                 }
             }) ;
         }
-    }
-)});
+    })
+})
 
 module.exports = router;

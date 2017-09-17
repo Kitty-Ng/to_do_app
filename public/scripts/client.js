@@ -3,8 +3,8 @@ $(document).ready(onReady);
 function onReady(){
     getTasks();
     $('#addButton').on('click', addTask);
-    $('#allTasks').on('click', ".deleteMe", deleteTask)
-    $('#allTasks').on('click', ".completeMe", completeTask)
+    $('#allTasks').on('click', ".deleteMe", deleteTask);
+    $('#allTasks').on('click', ".completeMe", completeTask);
 }
 
 function getTasks(){
@@ -25,6 +25,7 @@ function appendRows(res){
             var $row = $('<tr data-taskcompleted="' + res[i].taskcompleted + '"></tr>');
             $row.append('<td>' + res[i].task + '</td>');
             $row.append('<td class="glyphicon glyphicon-ok"></td>');
+            
             $('#completedTasks').append($row);
         } else if (res[i].taskcompleted === false){
             var $row = $('<tr data-taskcompleted="' + res[i].taskcompleted + '"></tr>');
@@ -35,6 +36,8 @@ function appendRows(res){
 
             var $deleteButton =$('<td><input type="checkbox" class="deleteMe" data-id="' + res[i].id + '"></input></td>');
             $row.append($deleteButton);
+
+            $row.append('<td>' + res[i].created_at + '</td>');
 
             $('#allTasks').append($row);
         }
