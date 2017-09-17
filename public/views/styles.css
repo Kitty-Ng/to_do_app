@@ -2,39 +2,19 @@ html{
     font-family: Helvetica;
 }
 
+h1{
+    padding-left: 20px;
+}
+
+h2{
+    padding-left: 20px;
+}
+
 input{
     width: 80%;
     padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
-}
-
-input:focus {
-    background-color: lightblue;
-    font-size: 20px;
-}
-
-table, th {
-    border: 1px solid navy;
-    padding: 15px;
-    text-align: left;
-}
-
-table {
-    border-collapse: collapse;
-}
-
-th {
-    background-color: lightblue;
-    color: black;
-}
-
-[data-taskcompleted="true"] {
-    background-color: lightgray;
-}
-
-[data-taskcompleted="false"]:nth-child(even) {
-    background-color: lightblue;
 }
 
 button {
@@ -46,4 +26,38 @@ button {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
+}
+
+input:focus {
+    background-color: lightblue;
+    font-size: 20px;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+th {
+    background-color: lightblue;
+    color: black;
+    font-size: 20px;
+}
+
+tr {
+    border: 1px solid navy;
+    text-align: left;
+}
+
+td {
+    color: black;
+    font-size: 16px;
+    padding: 15px;
+}
+
+[data-taskcompleted="true"] {
+    background-color: lightgray;
+}
+
+[data-taskcompleted="false"]:nth-child(even) {
+    background-color: lightblue;
 }

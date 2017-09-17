@@ -28,7 +28,7 @@ function appendRows(res){
             $('#completedTasks').append($row);
         } else if (res[i].taskcompleted === false){
             var $row = $('<tr data-taskcompleted="' + res[i].taskcompleted + '"></tr>');
-            $row.append('<td><button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-pencil"></span>' + res[i].task + '</button></td>');
+            $row.append('<td>' + res[i].task + '</td>');
 
             var $completeButton =$('<td><input type ="checkbox" class="completeMe" data-id="' + res[i].id + '"></input></td>');
             $row.append($completeButton);
@@ -37,8 +37,6 @@ function appendRows(res){
             $row.append($deleteButton);
 
             $('#allTasks').append($row);
-        } else {
-            console.log('error with client js appendRows')
         }
     }
 }

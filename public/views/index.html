@@ -13,32 +13,32 @@
 <body>
     <h1>My To-Do List</h1>
     <section id="inputArea">
-        <input type="text", id="taskIn", placeholder="Add your new Task">
+        <input type="text" id="taskIn" placeholder="Add your new Task">
         <button id="addButton">Add New Task</button>
     </section>
-    <br>
     <section id="displayArea">
         <h2>All Open Tasks</h2>
-        <table id="taskList">
+        <table id="taskList" class="container">
             <thead>
-                <th>Task</th>
-                <th>Mark Complete</th>
-                <th>Delete</th>   
+                <th class="col-sm-8">Task</th>
+                <th class="col-2">Mark Complete</th>
+                <th class="col-2">Delete</th>   
             </thead>
             <tbody id="allTasks">
             </tbody>
         </table>
     </section>
+    <br>
     <section id="completedDisplayArea">
-            <h2>All Completed Tasks</h2>
-            <table id="completedTaskList">
-                <thead>
-                    <th>Task</th>
-                    <th>Status</th>  
-                </thead>
-                    <tbody id="completedTasks">
-                    </tbody>
-            </table>
-        </section>
+        <h2>All Completed Tasks</h2>
+        <table id="completedTaskList" class="container">
+            <thead>
+                <th class="col-sm-8">Task</th>
+                <th class="col-2">Completed</th>  
+            </thead>
+                <tbody id="completedTasks">
+                </tbody>
+        </table>
+    </section>
 </body>
 </html>
